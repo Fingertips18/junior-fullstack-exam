@@ -26,6 +26,10 @@ const config = {
           "0 0px 25px hsl(var(--primary))",
           "0 0px 50px hsl(var(--primary))",
         ],
+        "wide-glow": [
+          "0 0px 15px hsl(var(--primary))",
+          "0 0px 60px hsl(var(--primary))",
+        ],
       },
       colors: {
         border: "hsl(var(--border))",
