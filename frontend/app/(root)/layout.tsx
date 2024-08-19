@@ -1,3 +1,5 @@
+import { Header } from "./_components/header";
+
 interface HomeLayoutProps {
   children: React.ReactNode;
 }
@@ -5,9 +7,8 @@ interface HomeLayoutProps {
 export default function HomeLayout({ children }: HomeLayoutProps) {
   return (
     <>
-      Header
-      <main className="h-dvh flex-center">{children}</main>
-      Footer
+      <Header />
+      <main className="w-full h-dvh pt-14">{children}</main>
     </>
   );
 }
