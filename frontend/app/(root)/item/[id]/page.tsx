@@ -6,7 +6,7 @@ import { Badge } from "@/components/shadcn/badge";
 
 import { ItemBreadcrumb } from "./_components/item-breadcrumb";
 import { DeleteItem } from "./_components/delete-item";
-import { EditItem } from "./_components/edit-item";
+import { UpdateItem } from "./_components/update-item";
 
 interface ItemPageProps {
   params: {
@@ -36,12 +36,12 @@ export default async function ItemPage({ params }: ItemPageProps) {
             {item.name}
           </Label>
           <div className="flex-end gap-x-2">
-            <EditItem />
+            <UpdateItem item={item} />
             <DeleteItem id={item.id} name={item.name} />
           </div>
         </div>
         <p className="text-foreground/60 text-sm lg:text-base">{item.desc}</p>
-        <Badge className="text-lg font-semibold px-6">{price}</Badge>
+        <Badge className="lg:text-lg lg:font-normal lg:px-6">{price}</Badge>
       </div>
     </section>
   );

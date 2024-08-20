@@ -17,35 +17,16 @@ import {
 } from "@/components/shadcn/form";
 import { onCreateItem } from "@/lib/actions/item-action";
 import { Textarea } from "@/components/shadcn/textarea";
+import { itemSchema } from "@/lib/schemas/item-schema";
 import { Button } from "@/components/shadcn/button";
 import { Input } from "@/components/shadcn/input";
 import { cn } from "@/lib/utils";
 
-const formSchema = z.object({
-  name: z
-    .string()
-    .min(1, { message: "Name must be at least 1 character." })
-    .max(50, { message: "Name must have a maximum of 50 characters." }),
-  desc: z
-    .string()
-    .min(6, { message: "Description must have at least 6 characters." })
-    .max(100, {
-      message: "Description must have a maximum of 100 characters.",
-    }),
-  price: z.preprocess((value) => {
-    if (typeof value === "string") {
-      return parseFloat(value);
-    }
-
-    return value;
-  }, z.number({ message: "Price is required." }).positive({ message: "Price must be a positive number." })),
-});
-
 export function ItemForm() {
   const [pending, startTransition] = useTransition();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof itemSchema>>({
+    resolver: zodResolver(itemSchema),
     defaultValues: {
       name: "",
       desc: "",
@@ -53,7 +34,7 @@ export function ItemForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof itemSchema>) {
     startTransition(() => {
       onCreateItem({ ...values })
         .then((data) => {

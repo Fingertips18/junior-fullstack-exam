@@ -11,10 +11,10 @@ export default async function HomePage() {
   const data = await ItemService.getItems();
 
   return (
-    <section className="max-w-screen-lg mx-auto h-full p-4 md:p-6 lg:px-0 lg:py-8 space-y-6">
+    <section className="max-w-screen-lg mx-auto p-4 md:p-6 lg:px-0 lg:py-8 space-y-6">
       <HomeBreadcrumb />
 
-      <div className="p-4 border rounded-md">
+      <div className="p-2 lg:p-4 border rounded-md">
         <div className="flex-between gap-x-6">
           <div className="space-y-1 leading-none">
             <div className="flex items-center gap-x-2 lg:gap-x-4">

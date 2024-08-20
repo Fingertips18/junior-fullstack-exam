@@ -66,6 +66,34 @@ export const ItemService = {
     return result;
   },
 
+  updateItem: async (values: Partial<ItemType>) => {
+    const data = {
+      name: values.name,
+      desc: values.desc,
+      price: values.price,
+    };
+
+    console.log(values.id);
+
+    const response = await fetch(`${url}/${values.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        `Server Error! status: ${response.status}, text: ${response.statusText}`
+      );
+    }
+
+    const result: ItemType = await response.json();
+
+    return result;
+  },
+
   deleteItem: async (id: number) => {
     const response = await fetch(`${url}/${id}`, {
       method: "DELETE",

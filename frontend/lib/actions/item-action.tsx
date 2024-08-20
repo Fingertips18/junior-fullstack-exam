@@ -18,6 +18,19 @@ export async function onCreateItem(values: Partial<ItemType>) {
   }
 }
 
+export async function onUpdateItem(values: Partial<ItemType>) {
+  try {
+    const response = await ItemService.updateItem(values);
+
+    revalidatePath(AppRoutes.home);
+    revalidatePath(`${AppRoutes.item}/${response.id}`);
+
+    return response;
+  } catch (e) {
+    throw new Error(`Server error: ${e}`);
+  }
+}
+
 export async function onDeleteItem(id: number) {
   try {
     await ItemService.deleteItem(id);

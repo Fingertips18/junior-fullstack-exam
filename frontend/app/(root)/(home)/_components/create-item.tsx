@@ -1,7 +1,7 @@
 import { PencilLine } from "lucide-react";
+import Link from "next/link";
 
 import { Button } from "@/components/shadcn/button";
-import Link from "next/link";
 import { AppRoutes } from "@/constants/routes";
 
 export function CreateItem() {
@@ -9,9 +9,12 @@ export function CreateItem() {
     <>
       <Button
         asChild
-        className="hidden lg:flex font-semibold transition-all hover:drop-shadow-wide-glow active:scale-95"
+        className="font-semibold transition-all hover:drop-shadow-wide-glow active:scale-95"
       >
-        <Link href={AppRoutes.createItem} className="flex-center gap-x-4">
+        <Link
+          href={AppRoutes.createItem}
+          className="hidden lg:flex-center gap-x-4"
+        >
           <PencilLine className="w-6 h-6" />
           Create Item
         </Link>
@@ -20,9 +23,9 @@ export function CreateItem() {
       <Button
         asChild
         size={"icon"}
-        className="min-w-10 lg:hidden transition-all hover:drop-shadow-wide-glow active:scale-95"
+        className="min-w-10 transition-all hover:drop-shadow-wide-glow active:scale-95"
       >
-        <Link href={AppRoutes.createItem}>
+        <Link href={AppRoutes.createItem} className="lg:hidden ">
           <PencilLine className="w-5 h-5" />
         </Link>
       </Button>
