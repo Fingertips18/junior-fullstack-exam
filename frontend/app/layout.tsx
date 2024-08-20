@@ -2,6 +2,7 @@ import { Poppins } from "next/font/google";
 import type { Metadata } from "next";
 
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { ToastProvider } from "@/components/providers/toast-provider";
 
 import "./globals.css";
 
@@ -69,7 +70,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <ToastProvider>{children}</ToastProvider>
         </ThemeProvider>
       </body>
     </html>

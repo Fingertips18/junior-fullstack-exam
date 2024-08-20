@@ -15,10 +15,36 @@ export const ItemService = {
       if (response.status === 200) {
         items = await response.json();
       }
-    } catch (error) {
+    } catch (_) {
       items = [];
     }
 
     return items;
+  },
+
+  createItem: async (values: Partial<ItemType>) => {
+    const data = {
+      name: values.name,
+      desc: values.desc,
+      price: values.price,
+    };
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        `Server Error! status: ${response.status}, text: ${response.statusText}`
+      );
+    }
+
+    const result: ItemType = await response.json();
+
+    return result;
   },
 };

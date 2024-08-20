@@ -1,16 +1,8 @@
 import { ScrollText } from "lucide-react";
 
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/shadcn/breadcrumb";
 import { ItemService } from "@/lib/services/item-service";
-import { AppRoutes } from "@/constants/routes";
 
+import { HomeBreadcrumb } from "./_components/home-breadcrumb";
 import { CreateItem } from "./_components/create-item";
 import { DataTable } from "./_components/data-table";
 import { columns } from "./_components/columns";
@@ -20,17 +12,7 @@ export default async function HomePage() {
 
   return (
     <section className="max-w-screen-lg mx-auto h-full p-4 md:p-6 lg:px-0 lg:py-8 space-y-6">
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href={AppRoutes.home}>Home</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>Items</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
+      <HomeBreadcrumb />
 
       <div className="p-4 border rounded-md">
         <div className="flex-between gap-x-6">
