@@ -17,3 +17,13 @@ export async function onCreateItem(values: Partial<ItemType>) {
     throw new Error(`Server error: ${e}`);
   }
 }
+
+export async function onDeleteItem(id: number) {
+  try {
+    await ItemService.deleteItem(id);
+
+    revalidatePath(AppRoutes.home);
+  } catch (e) {
+    throw new Error(`Server error: ${e}`);
+  }
+}

@@ -30,6 +30,10 @@ const config = {
           "0 0px 15px hsl(var(--primary))",
           "0 0px 60px hsl(var(--primary))",
         ],
+        "danger-glow": [
+          "0 0px 15px hsl(var(--destructive))",
+          "0 0px 60px hsl(var(--destructive))",
+        ],
       },
       colors: {
         border: "hsl(var(--border))",

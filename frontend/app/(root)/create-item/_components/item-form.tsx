@@ -56,7 +56,10 @@ export function ItemForm() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     startTransition(() => {
       onCreateItem({ ...values })
-        .then((data) => toast.success(`${data.name} created successfully!`))
+        .then((data) => {
+          form.reset();
+          toast.success(`${data.name} created successfully!`);
+        })
         .catch(() => toast.error("Unable to create item. Please try again."));
     });
   }

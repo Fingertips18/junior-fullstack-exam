@@ -12,7 +12,7 @@ export const ItemService = {
         cache: "force-cache",
       });
 
-      if (response.status === 200) {
+      if (response.ok) {
         items = await response.json();
       }
     } catch (_) {
@@ -20,6 +20,24 @@ export const ItemService = {
     }
 
     return items;
+  },
+
+  getItem: async (id: number) => {
+    let item: ItemType | null = null;
+
+    try {
+      const response = await fetch(`${url}/${id}`, {
+        method: "GET",
+      });
+
+      if (response.ok) {
+        item = await response.json();
+      }
+    } catch (_) {
+      item = null;
+    }
+
+    return item;
   },
 
   createItem: async (values: Partial<ItemType>) => {
@@ -46,5 +64,17 @@ export const ItemService = {
     const result: ItemType = await response.json();
 
     return result;
+  },
+
+  deleteItem: async (id: number) => {
+    const response = await fetch(`${url}/${id}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        `Server Error! status: ${response.status}, text: ${response.statusText}`
+      );
+    }
   },
 };

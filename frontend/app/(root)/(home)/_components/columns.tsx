@@ -15,6 +15,8 @@ import { Button } from "@/components/shadcn/button";
 import { ItemType } from "@/lib/types/item-type";
 
 import { DataTableColumnHeader } from "./data-table-column-header";
+import { ViewItemDetails } from "./view-item-details";
+import { CopyButton } from "./copy-button";
 
 export const columns: ColumnDef<ItemType>[] = [
   {
@@ -67,13 +69,9 @@ export const columns: ColumnDef<ItemType>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(id.toString())}
-            >
-              Copy item ID
-            </DropdownMenuItem>
+            <CopyButton id={id} />
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View item details</DropdownMenuItem>
+            <ViewItemDetails item={row.original} />
           </DropdownMenuContent>
         </DropdownMenu>
       );
