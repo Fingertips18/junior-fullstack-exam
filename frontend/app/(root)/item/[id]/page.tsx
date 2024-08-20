@@ -7,6 +7,7 @@ import { Badge } from "@/components/shadcn/badge";
 import { ItemBreadcrumb } from "./_components/item-breadcrumb";
 import { DeleteItem } from "./_components/delete-item";
 import { UpdateItem } from "./_components/update-item";
+import { Skeleton } from "@/components/shadcn/skeleton";
 
 interface ItemPageProps {
   params: {
@@ -27,7 +28,7 @@ export default async function ItemPage({ params }: ItemPageProps) {
   }).format(item.price);
 
   return (
-    <section className="max-w-screen-lg mx-auto h-full p-4 md:p-6 lg:px-0 lg:py-8 space-y-6">
+    <section className="max-w-screen-lg mx-auto p-4 md:p-6 lg:px-0 lg:py-8 space-y-6">
       <ItemBreadcrumb item={item} />
 
       <div className="mt-4 space-y-2">
