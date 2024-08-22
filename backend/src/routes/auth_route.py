@@ -4,7 +4,6 @@ import logging
 import pytz
 import jwt
 
-from src.services.refresh_token_service import RefreshTokenService
 from src.services.token_service import TokenService
 from src.services.user_service import UserService
 from src.constants.routes import Routes
@@ -31,9 +30,11 @@ def signIn():
         if user is None:
             return make_response(jsonify({'error': 'User not found'}), 404)
 
-        token = TokenService.generate_token(id=user.id)
+        token = TokenService.generate_all_tokens(id=user.id)
 
-        session['token'] = token
+        TokenService.store_token(user_id=user.id, token=token['refresh_token'])
+
+        session['token'] = token['refresh_token']
 
         return make_response(jsonify(token), 200)
 
@@ -58,7 +59,6 @@ def signUp():
         logger.error(e)
         return make_response(jsonify({'error': 'Unable to register credentials'}), 500)
 
-
 @auth_bp.route(Routes.REFRESH.value, methods=['POST'])
 def refresh():
     data = request.json
@@ -70,18 +70,15 @@ def refresh():
     try:
         payload = jwt.decode(refresh_token, current_app.config['SECRET_KEY'], algorithms=['HS256'])
         user_id = payload['user_id']
-        stored_token = RefreshTokenService.get_token(user_id)
+        stored_token = TokenService.get_token(user_id=user_id)
 
         if not stored_token or refresh_token != stored_token.token:
             return make_response(jsonify({'error': 'Invalid refresh token'}), 401)
 
         # Generate a new access token
-        new_access_token = jwt.encode({
-            'user_id': user_id,
-            'exp': datetime.now(pytz.utc) + timedelta(minutes=15)
-        }, current_app.config['SECRET_KEY'], algorithm='HS256')
+        new_token = TokenService.generate_new_token(id=user_id)
 
-        return jsonify({'access_token': new_access_token})
+        return make_response(jsonify(new_token), 200)
 
     except jwt.ExpiredSignatureError:
         return make_response(jsonify({'error': 'Refresh token has expired'}), 401)
