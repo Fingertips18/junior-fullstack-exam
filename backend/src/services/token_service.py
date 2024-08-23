@@ -8,12 +8,13 @@ from src.configs.db import db
 
 class TokenService:
     @staticmethod
-    def generate_all_tokens(id):
+    def generate_all_tokens(id, username):
         access_expiration = datetime.now(pytz.utc) + timedelta(minutes=15)
         refresh_expiration = datetime.now(pytz.utc) + timedelta(days=7)
 
         access_token = jwt.encode({
             'user_id': id,
+            'username': username,
             'exp': access_expiration
         }, 
         current_app.config['SECRET_KEY'], 
@@ -22,6 +23,7 @@ class TokenService:
 
         refresh_token = jwt.encode({
             'user_id': id,
+            'username': username,
             'exp': refresh_expiration
         }, 
         current_app.config['SECRET_KEY'], 
@@ -31,11 +33,12 @@ class TokenService:
         return { 'access_token': access_token, 'refresh_token': refresh_token }
     
     @staticmethod
-    def generate_new_token(id):
+    def generate_new_token(id, username):
         exp = datetime.now(pytz.utc) + timedelta(minutes=15)
 
         new_token = jwt.encode({
             'user_id': id,
+            'username': username,
             'exp': exp
         },
         current_app.config['SECRET_KEY'], 

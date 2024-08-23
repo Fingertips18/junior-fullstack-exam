@@ -12,8 +12,8 @@ const inter = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Junior Full Stack Frontend",
-  applicationName: "Junior Full Stack Frontend",
+  title: "Junior Full Stack Exam",
+  applicationName: "Junior Full Stack Exam",
   description:
     "Frontend built with Next.js for a Junior Full Stack Developer exam, offering a responsive UI and efficient API integration with a Flask backend.",
   authors: [

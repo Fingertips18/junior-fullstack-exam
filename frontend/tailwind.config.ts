@@ -34,6 +34,10 @@ const config = {
           "0 0px 15px hsl(var(--destructive))",
           "0 0px 60px hsl(var(--destructive))",
         ],
+        "text-glow": [
+          "0 0px 1px hsl(var(--foreground))",
+          "0 0px 4px hsl(var(--foreground))",
+        ],
       },
       colors: {
         border: "hsl(var(--border))",

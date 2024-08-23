@@ -119,6 +119,7 @@ export function UpdateItem({ item }: UpdateItemProps) {
                     <Input
                       placeholder="e.g. Wireless Mouse"
                       id="name"
+                      disabled={pending}
                       autoComplete="off"
                       {...field}
                     />
@@ -139,6 +140,7 @@ export function UpdateItem({ item }: UpdateItemProps) {
                       placeholder="e.g. Ergonomic design with adjustable DPI settings."
                       {...field}
                       id="desc"
+                      disabled={pending}
                       name="desc"
                       className="resize-none"
                       rows={6}
@@ -162,6 +164,7 @@ export function UpdateItem({ item }: UpdateItemProps) {
                         id="price"
                         type="number"
                         step="0.01"
+                        disabled={pending}
                         autoComplete="off"
                         className="pl-7"
                         {...field}

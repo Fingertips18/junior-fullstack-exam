@@ -1,6 +1,8 @@
 import { ScrollText } from "lucide-react";
+import { cookies } from "next/headers";
 
 import { ItemService } from "@/lib/services/item-service";
+import { ItemType } from "@/lib/types/item-type";
 
 import { HomeBreadcrumb } from "./_components/home-breadcrumb";
 import { CreateItem } from "./_components/create-item";
@@ -8,7 +10,14 @@ import { DataTable } from "./_components/data-table";
 import { columns } from "./_components/columns";
 
 export default async function HomePage() {
-  const data = await ItemService.getItems();
+  const cookieStore = cookies();
+  const token = cookieStore.get("access_token")?.value;
+
+  let data: ItemType[] = [];
+
+  if (token) {
+    data = await ItemService.getItems(token);
+  }
 
   return (
     <section className="max-w-screen-lg mx-auto p-4 md:p-6 lg:px-0 lg:py-8 space-y-6">

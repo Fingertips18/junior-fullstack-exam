@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from dotenv import load_dotenv
+from flask_cors import CORS
 import os
 
 from src.routes.items_route import items_api
@@ -13,6 +14,7 @@ def configure():
 
 def create_app():
     app = Flask(__name__)
+    CORS(app)
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
     init_db(app)

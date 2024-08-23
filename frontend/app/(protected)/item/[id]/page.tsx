@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { cookies } from "next/headers";
 
 import { ItemService } from "@/lib/services/item-service";
 import { Label } from "@/components/shadcn/label";
@@ -7,7 +8,7 @@ import { Badge } from "@/components/shadcn/badge";
 import { ItemBreadcrumb } from "./_components/item-breadcrumb";
 import { DeleteItem } from "./_components/delete-item";
 import { UpdateItem } from "./_components/update-item";
-import { Skeleton } from "@/components/shadcn/skeleton";
+import { ItemType } from "@/lib/types/item-type";
 
 interface ItemPageProps {
   params: {
@@ -16,7 +17,14 @@ interface ItemPageProps {
 }
 
 export default async function ItemPage({ params }: ItemPageProps) {
-  const item = await ItemService.getItem(params.id);
+  const cookieStore = cookies();
+  const token = cookieStore.get("access_token")?.value;
+
+  let item: ItemType | null = null;
+
+  if (token) {
+    item = await ItemService.getItem(params.id, token);
+  }
 
   if (!item) {
     notFound();

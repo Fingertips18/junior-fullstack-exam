@@ -1,15 +1,21 @@
 import { ItemType } from "@/lib/types/item-type";
 
-const url = `${process.env.BASE_URL}/api/items`;
+const base =
+  process.env.NODE_ENV === "production"
+    ? process.env.BASE_URL
+    : process.env.NEXT_PUBLIC_DEV_URL;
+const url = `${base}/api/items`;
 
 export const ItemService = {
-  getItems: async () => {
+  getItems: async (token: string) => {
     let items: ItemType[] = [];
 
     try {
       const response = await fetch(url, {
         method: "GET",
-        cache: "force-cache",
+        headers: {
+          Authorization: token,
+        },
       });
 
       if (response.ok) {
@@ -22,12 +28,15 @@ export const ItemService = {
     return items;
   },
 
-  getItem: async (id: number) => {
+  getItem: async (id: number, token: string) => {
     let item: ItemType | null = null;
 
     try {
       const response = await fetch(`${url}/${id}`, {
         method: "GET",
+        headers: {
+          Authorization: token,
+        },
       });
 
       if (response.ok) {
@@ -40,7 +49,7 @@ export const ItemService = {
     return item;
   },
 
-  createItem: async (values: Partial<ItemType>) => {
+  createItem: async (values: Partial<ItemType>, token: string) => {
     const data = {
       name: values.name,
       desc: values.desc,
@@ -51,6 +60,7 @@ export const ItemService = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: token,
       },
       body: JSON.stringify(data),
     });
@@ -66,19 +76,18 @@ export const ItemService = {
     return result;
   },
 
-  updateItem: async (values: Partial<ItemType>) => {
+  updateItem: async (values: Partial<ItemType>, token: string) => {
     const data = {
       name: values.name,
       desc: values.desc,
       price: values.price,
     };
 
-    console.log(values.id);
-
     const response = await fetch(`${url}/${values.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        Authorization: token,
       },
       body: JSON.stringify(data),
     });
@@ -94,9 +103,12 @@ export const ItemService = {
     return result;
   },
 
-  deleteItem: async (id: number) => {
+  deleteItem: async (id: number, token: string) => {
     const response = await fetch(`${url}/${id}`, {
       method: "DELETE",
+      headers: {
+        Authorization: token,
+      },
     });
 
     if (!response.ok) {

@@ -1,7 +1,5 @@
 from flask import Blueprint,jsonify, make_response, request, current_app, session
-from datetime import datetime, timedelta
 import logging
-import pytz
 import jwt
 
 from src.services.token_service import TokenService
@@ -30,7 +28,7 @@ def signIn():
         if user is None:
             return make_response(jsonify({'error': 'User not found'}), 404)
 
-        token = TokenService.generate_all_tokens(id=user.id)
+        token = TokenService.generate_all_tokens(id=user.id, username=user.username)
 
         TokenService.store_token(user_id=user.id, token=token['refresh_token'])
 
@@ -70,13 +68,14 @@ def refresh():
     try:
         payload = jwt.decode(refresh_token, current_app.config['SECRET_KEY'], algorithms=['HS256'])
         user_id = payload['user_id']
+        username = payload['username']
         stored_token = TokenService.get_token(user_id=user_id)
 
         if not stored_token or refresh_token != stored_token.token:
             return make_response(jsonify({'error': 'Invalid refresh token'}), 401)
 
         # Generate a new access token
-        new_token = TokenService.generate_new_token(id=user_id)
+        new_token = TokenService.generate_new_token(id=user_id,  username=username)
 
         return make_response(jsonify(new_token), 200)
 

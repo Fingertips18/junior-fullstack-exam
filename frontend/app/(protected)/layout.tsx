@@ -1,10 +1,10 @@
 import { Header } from "./_components/header";
 
-interface HomeLayoutProps {
+interface ProtectedLayoutProps {
   children: React.ReactNode;
 }
 
-export default function HomeLayout({ children }: HomeLayoutProps) {
+export default function ProtectedLayout({ children }: ProtectedLayoutProps) {
   return (
     <>
       <Header />

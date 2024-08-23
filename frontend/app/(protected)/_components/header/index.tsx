@@ -1,8 +1,8 @@
 import Link from "next/link";
 
+import { ToggleMode } from "@/components/toggle-mode";
 import { AppRoutes } from "@/constants/routes";
 
-import { ToggleMode } from "./toggle-mode";
 import { Title } from "./title";
 import { Logo } from "./logo";
 

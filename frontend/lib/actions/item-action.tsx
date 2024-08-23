@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
 
 import { ItemService } from "@/lib/services/item-service";
 import { ItemType } from "@/lib/types/item-type";
@@ -8,7 +9,12 @@ import { AppRoutes } from "@/constants/routes";
 
 export async function onCreateItem(values: Partial<ItemType>) {
   try {
-    const response = await ItemService.createItem(values);
+    const cookieStore = cookies();
+    const token = cookieStore.get("access_token")?.value;
+
+    if (!token) throw new Error("Access token not found");
+
+    const response = await ItemService.createItem(values, token);
 
     revalidatePath(AppRoutes.home);
 
@@ -20,7 +26,12 @@ export async function onCreateItem(values: Partial<ItemType>) {
 
 export async function onUpdateItem(values: Partial<ItemType>) {
   try {
-    const response = await ItemService.updateItem(values);
+    const cookieStore = cookies();
+    const token = cookieStore.get("access_token")?.value;
+
+    if (!token) throw new Error("Access token not found");
+
+    const response = await ItemService.updateItem(values, token);
 
     revalidatePath(AppRoutes.home);
     revalidatePath(`${AppRoutes.item}/${response.id}`);
@@ -33,7 +44,12 @@ export async function onUpdateItem(values: Partial<ItemType>) {
 
 export async function onDeleteItem(id: number) {
   try {
-    await ItemService.deleteItem(id);
+    const cookieStore = cookies();
+    const token = cookieStore.get("access_token")?.value;
+
+    if (!token) throw new Error("Access token not found");
+
+    await ItemService.deleteItem(id, token);
 
     revalidatePath(AppRoutes.home);
   } catch (e) {

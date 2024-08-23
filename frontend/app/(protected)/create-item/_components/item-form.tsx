@@ -58,6 +58,7 @@ export function ItemForm() {
                 <Input
                   placeholder="e.g. Wireless Mouse"
                   id="name"
+                  disabled={pending}
                   autoComplete="off"
                   {...field}
                 />
@@ -78,6 +79,7 @@ export function ItemForm() {
                   placeholder="e.g. Ergonomic design with adjustable DPI settings."
                   {...field}
                   id="desc"
+                  disabled={pending}
                   name="desc"
                   className="resize-none"
                   rows={6}
@@ -100,6 +102,7 @@ export function ItemForm() {
                     placeholder="e.g. 25.99"
                     id="price"
                     type="number"
+                    disabled={pending}
                     step="0.01"
                     autoComplete="off"
                     className="pl-7"

@@ -19,7 +19,6 @@ class TestUsers(TestBase):
         if not self.password:
             raise ValueError("TEST_PASSWORD environment variable is not set or is empty")
 
-
     def test_token_missing(self):
         # GET USERS
         res = self.client.get(Routes.USERS.value)
