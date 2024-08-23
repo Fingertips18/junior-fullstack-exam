@@ -3,10 +3,7 @@ import { jwtVerify } from "jose";
 
 import { key } from "@/constants/keys";
 
-const base =
-  process.env.NODE_ENV === "production"
-    ? process.env.NEXT_PUBLIC_BASE_URL
-    : process.env.NEXT_PUBLIC_DEV_URL;
+const base = process.env.BASE_URL!;
 const url = `${base}/refresh`;
 
 export const TokenService = {

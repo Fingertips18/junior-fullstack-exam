@@ -41,10 +41,7 @@ export function SignInForm() {
           toast.success("Welcome! You have signed in");
           router.replace(AppRoutes.home);
         })
-        .catch((e) => {
-          console.error(e);
-          toast.error("Unable to sign in. Please try again.");
-        });
+        .catch(() => toast.error("Unable to sign in. Please try again."));
     });
   }
 
