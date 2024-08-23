@@ -37,7 +37,11 @@ export function SignUpForm() {
 
   function onSubmit(values: z.infer<typeof signUpSchema>) {
     startTransition(() => {
-      onSignUp(values)
+      onSignUp({
+        username: values.username,
+        email: values.email,
+        password: values.password,
+      })
         .then(() => {
           toast.success("You are now registered. Sign in now!");
           router.replace(AppRoutes.signIn);

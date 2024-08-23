@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ToggleMode } from "@/components/toggle-mode";
 import { AppRoutes } from "@/constants/routes";
 
+import { SignOut } from "./sign-out";
 import { Title } from "./title";
 import { Logo } from "./logo";
 
@@ -18,7 +19,10 @@ export function Header() {
           <Title />
         </Link>
 
-        <ToggleMode />
+        <div className="flex items-end gap-x-4">
+          <ToggleMode />
+          <SignOut />
+        </div>
       </nav>
     </header>
   );

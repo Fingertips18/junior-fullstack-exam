@@ -26,3 +26,13 @@ export async function onRefreshAccessToken(token: string) {
     throw new Error(`Server error: ${e}`);
   }
 }
+
+export async function onRemoveTokens() {
+  try {
+    const cookieStore = cookies();
+    cookieStore.delete("access_token");
+    cookieStore.delete("refresh_token");
+  } catch (e) {
+    throw new Error(`Server error: ${e}`);
+  }
+}
