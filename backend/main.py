@@ -14,7 +14,10 @@ def configure():
 
 def create_app():
     app = Flask(__name__)
-    CORS(app)
+    env = os.getenv('FLASK_ENV', 'production')
+    if env == 'development':
+        CORS(app)
+        
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
     init_db(app)
