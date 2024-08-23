@@ -17,7 +17,7 @@ import {
   FormMessage,
 } from "@/components/shadcn/form";
 import { signUpSchema } from "@/lib/schemas/sign-up-schema";
-import { AuthService } from "@/lib/services/auth-service";
+import { onSignUp } from "@/lib/actions/auth-action";
 import { Button } from "@/components/shadcn/button";
 import { Input } from "@/components/shadcn/input";
 import { AppRoutes } from "@/constants/routes";
@@ -37,7 +37,7 @@ export function SignUpForm() {
 
   function onSubmit(values: z.infer<typeof signUpSchema>) {
     startTransition(() => {
-      AuthService.signUp(values)
+      onSignUp(values)
         .then(() => {
           toast.success("You are now registered. Sign in now!");
           router.replace(AppRoutes.signIn);
