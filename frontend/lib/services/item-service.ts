@@ -2,7 +2,7 @@ import { ItemType } from "@/lib/types/item-type";
 
 const base =
   process.env.NODE_ENV === "production"
-    ? process.env.BASE_URL
+    ? process.env.NEXT_PUBLIC_BASE_URL
     : process.env.NEXT_PUBLIC_DEV_URL;
 const url = `${base}/api/items`;
 

@@ -46,10 +46,7 @@ export function SignUpForm() {
           toast.success("You are now registered. Sign in now!");
           router.replace(AppRoutes.signIn);
         })
-        .catch((e) => {
-          console.error(e);
-          toast.error("Unable to register. Please try again.");
-        });
+        .catch(() => toast.error("Unable to register. Please try again."));
     });
   }
 
