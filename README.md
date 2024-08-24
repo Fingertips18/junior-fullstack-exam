@@ -1,3 +1,5 @@
+![](assets/banner.png)
+
 # 🛠️ Junior Full-Stack Exam Project: Next.js & Flask
 
 This project is a full-stack web application developed as part of a junior full-stack developer exam. It features a Next.js frontend, a Flask backend, and implements CRUD operations with JWT-based authentication.
