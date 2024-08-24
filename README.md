@@ -2,37 +2,37 @@
 
 This project is a full-stack web application developed as part of a junior full-stack developer exam. It features a Next.js frontend, a Flask backend, and implements CRUD operations with JWT-based authentication.
 
-## 📚 Table of Contents
+## 📚 <a name="table">Table of Contents</a>
 
-- [🔧 Technologies Used](#technologies-used)
-- [✨ Features](#features)
-- [📖 Setup Instructions](#setup-instructions)
-  - [🐍 Backend (Flask)](#backend-flask)
-  - [⚛️ Frontend (Next.js)](#frontend-nextjs)
-- [🔑 Environment Variables](#environment-variables)
-- [🚀 Running the Application](#running-the-application)
-- [📡 API Endpoints](#api-endpoints)
-- [🔒 Authentication](#authentication)
-- [🤝 Contributing](#contributing)
-- [📜 License](#license)
+- 🔧 [Technologies Used](#tech-used)
+- ✨ [Features](#features)
+- 📖 [Setup Instructions](#setup)
+- 🐍 [Backend (Flask)](#backend)
+- ⚛️ [Frontend (Next.js)](#frontend)
+- 🔑 [Environment Variables](#env)
+- 🚀 [Running the Application](#run-app)
+- 📡 [API Endpoints](#api)
+- 🔒 [Authentication](#auth)
+- 🤝 [Contributing](#contributing)
+- 📜 [License](#license)
 
-## 🔧 Technologies Used
+## 🔧 <a name="tech-used">Technologies Used</a>
 
 - **Frontend**: Next.js (React) ⚛️
 - **Backend**: Flask (Python) 🐍
 - **Database**: SQLite 🗄️
 - **Authentication**: JWT (JSON Web Tokens) 🔐
 
-## ✨ Features
+## ✨ <a name="features">Features</a>
 
 - **🔒 User Authentication**: Sign-up, login, and JWT-based authentication.
 - **📝 CRUD Operations**: Create, Read, Update, and Delete operations for the application’s data models.
 - **📱 Responsive UI**: Developed using React components.
 - **📡 API**: RESTful API built with Flask.
 
-## 📖 Setup Instructions
+## 📖 <a name="setup">Setup Instructions</a>
 
-### 🐍 Backend (Flask)
+### 🐍 <a name="backend">Backend (Flask)</a>
 
 1. **Clone the repository**:
 
@@ -68,7 +68,7 @@ This project is a full-stack web application developed as part of a junior full-
    py main.py
    ```
 
-### ⚛️ Frontend (Next.js)
+### ⚛️ <a name="frontend">Frontend (Next.js)</a>
 
 1. **Navigate to the frontend directory**:
 
@@ -94,7 +94,7 @@ This project is a full-stack web application developed as part of a junior full-
    npm run dev
    ```
 
-## 🔑 Environment Variables
+## 🔑 <a name="env">Environment Variables</a>
 
 The following environment variables should be set:
 
@@ -116,7 +116,7 @@ The following environment variables should be set:
 
   - `SECRET_KEY`: Ensures that the data within the token has not been tampered with and confirms the authenticity of the token/user.
 
-## 🚀 Running the Application
+## 🚀 <a name="run-app">Running the Application</a>
 
 - **Backend**: `py main.py` or `flask run`
 
@@ -124,7 +124,7 @@ The following environment variables should be set:
 
 - Visit `http://localhost:3000` for the frontend and `http://localhost:5000` for the backend.
 
-## 📡 API Endpoints
+## 📡 <a name="api">API Endpoints</a>
 
 - **Root**:
 
@@ -156,16 +156,16 @@ The following environment variables should be set:
 
   - `DELETE /api/users/:id`: Delete a user
 
-## 🔒 Authentication
+## 🔒 <a name="auth">Authentication</a>
 
 This project uses JWT for secure authentication. Tokens are stored in cookies with `HttpOnly` and `SameSite` attributes for enhanced security.
 Both the `frontend` and `backend` handle the verification and expiration of the token.
 
-## 🤝 Contributing
+## 🤝 <a name="contributing">Contributing</a>
 
 Feel free to fork this repository and contribute by submitting a pull request. All contributions are welcome!
 
-## Contributors
+#### 🧑‍💻 Contributors
 
 <a href="https://github.com/Fingertips18/scroll-wheel-date-picker/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=Fingertips18/scroll-wheel-date-picker" />
@@ -173,6 +173,6 @@ Feel free to fork this repository and contribute by submitting a pull request. A
 
 _Ghian Tan_ @ _Fingertips_ ([Github](https://github.com/Fingertips18))
 
-## 📜 License
+## <a name="license">📜 License</a>
 
 This project is licensed under the MIT License.
