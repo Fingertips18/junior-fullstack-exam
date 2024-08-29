@@ -28,12 +28,16 @@ export async function onSignIn(values: Partial<AuthType>) {
       name: "access_token",
       value: access_token,
       httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
       expires: new Date(atPayload.exp! * 1000),
     });
     cookieStore.set({
       name: "refresh_token",
       value: refresh_token,
       httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
       expires: new Date(rtPayload.exp! * 1000),
     });
 
